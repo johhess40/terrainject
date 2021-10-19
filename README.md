@@ -1,2 +1,5 @@
-# terrainject
-This package is used to inject Terraform code for various providers such as Azure, AWS, GCP and others
+# TerraInject
+![madebyshield](https://img.shields.io/badge/madeby-johnhession-blue)
+
+>This package creates the ability to inject specifications for providers, resources, etc into Terraform 
+> files and is most useful for testing those Terraform configurations. 
