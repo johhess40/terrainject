@@ -1,4 +1,4 @@
-module iacTesting/terrainject
+module github.com/johhess40/terrainject
 
 go 1.16
 
