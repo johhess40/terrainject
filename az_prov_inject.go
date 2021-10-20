@@ -115,6 +115,11 @@ func BuildAz(f string, prov string, fields *AzProv) int {
 		log.Fatal(err)
 	}
 
+	seek, errseek := hclFile.Seek(0,2)
+	if errseek != nil {
+		log.Fatal(errseek)
+	}
+
 	rootBod := writer.Body()
 
 	provider := rootBod.AppendNewBlock("provider", []string{prov})
@@ -618,7 +623,7 @@ func BuildAz(f string, prov string, fields *AzProv) int {
 
 	providerBody.AppendBlock(block)
 
-	write, err := hclFile.Write(writer.Bytes())
+	write, err := hclFile.WriteAt(writer.Bytes(), seek)
 	if err != nil {
 		log.Fatal(err)
 	}
