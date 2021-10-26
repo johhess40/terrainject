@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/hashicorp/hcl2/hclwrite"
 	"github.com/zclconf/go-cty/cty"
+	"io/ioutil"
 	"log"
 	"os"
 )
@@ -634,6 +635,21 @@ func BuildAz(f string, prov string, fields *AzProv) int {
 // Takes one argument which is a string in order to read the file and then Unmarshal the JSON
 func ReadFile(path string) (*AzProv, error) {
 	file, err := os.ReadFile(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = json.Unmarshal(file, &prov)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return &prov, nil
+
+}
+
+func OldReadFile(path string) (*AzProv, error) {
+	file, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatal(err)
 	}
